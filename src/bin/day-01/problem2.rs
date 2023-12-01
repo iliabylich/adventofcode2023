@@ -14,7 +14,7 @@ fn leftmost_rightmost(input: &[u8]) -> (u8, u8) {
 
     while offset < input.len() {
         let slice = &input[offset..];
-        if matches!(slice[0], b'0'..=b'9') {
+        if slice[0].is_ascii_digit() {
             let digit = slice[0] - b'0';
             if leftmost.is_none() {
                 leftmost = Some(digit);

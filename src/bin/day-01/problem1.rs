@@ -8,12 +8,8 @@ fn solve(input: &[u8]) -> u64 {
         .split(|b| *b == b'\n')
         .filter(|line| !line.is_empty())
         .map(|line| {
-            let first_number = line.iter().find(|b| matches!(b, b'0'..=b'9')).unwrap();
-            let last_number = line
-                .iter()
-                .rev()
-                .find(|b| matches!(b, b'0'..=b'9'))
-                .unwrap();
+            let first_number = line.iter().find(|b| b.is_ascii_digit()).unwrap();
+            let last_number = line.iter().rev().find(|b| b.is_ascii_digit()).unwrap();
             ((first_number - b'0') * 10 + (last_number - b'0')) as u64
         })
         .sum()

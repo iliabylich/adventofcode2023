@@ -13,9 +13,9 @@ struct Number {
 
 impl Number {
     fn is_adjacent_to_sym(&self, sym: &Symbol) -> bool {
-        let l = self.col.checked_sub(1).unwrap_or(0);
+        let l = self.col.saturating_sub(1);
         let r = self.col + self.width;
-        let t = self.lineno.checked_sub(1).unwrap_or(0);
+        let t = self.lineno.saturating_sub(1);
         let b = self.lineno + 1;
 
         sym.lineno >= t && sym.lineno <= b && sym.col >= l && sym.col <= r

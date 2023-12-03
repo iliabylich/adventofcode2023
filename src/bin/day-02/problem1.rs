@@ -76,7 +76,7 @@ fn solve(input: &str) -> u32 {
     input
         .split('\n')
         .filter(|line| !line.is_empty())
-        .map(|line| parse(line))
+        .map(parse)
         .filter(|game| game.is_possible())
         .map(|game| game.n)
         .sum()

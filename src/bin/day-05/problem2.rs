@@ -176,7 +176,7 @@ fn solve(input: &str) -> u64 {
     let mut min = u64::MAX;
 
     for (start, size) in seeds {
-        dbg!(size);
+        // dbg!(size);
         for i in start..=(start + size) {
             let location = dataset.find(i);
             // dbg!(i, location);

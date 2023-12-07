@@ -10,7 +10,7 @@ struct Race {
 }
 
 fn parse_line(line: &str) -> Vec<u64> {
-    let line = line.split_once(":").unwrap().1;
+    let line = line.split_once(':').unwrap().1;
     line.trim()
         .split(' ')
         .filter(|p| !p.is_empty())
@@ -29,10 +29,7 @@ fn options_count_for_race(race: Race) -> u64 {
     // (<time> - D) * D > <distance>
     // and D can only be in the range [0, <time>]
 
-    (0..=time)
-        .into_iter()
-        .filter(|&d| (time - d) * d > distance)
-        .count() as u64
+    (0..=time).filter(|&d| (time - d) * d > distance).count() as u64
 }
 
 fn parse(input: &str) -> Vec<Race> {
@@ -44,17 +41,14 @@ fn parse(input: &str) -> Vec<Race> {
 
     times
         .into_iter()
-        .zip(distances.into_iter())
+        .zip(distances)
         .map(|(time, distance)| Race { time, distance })
         .collect()
 }
 
 fn solve(input: &str) -> u64 {
     let races = parse(input);
-    races
-        .into_iter()
-        .map(|race| options_count_for_race(race))
-        .product()
+    races.into_iter().map(options_count_for_race).product()
 }
 
 #[test]

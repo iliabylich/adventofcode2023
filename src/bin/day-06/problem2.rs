@@ -10,7 +10,7 @@ struct Race {
 }
 
 fn parse_line(line: &str) -> u64 {
-    let numbers = line.split_once(":").unwrap().1;
+    let numbers = line.split_once(':').unwrap().1;
     numbers
         .trim()
         .split(' ')
@@ -31,10 +31,7 @@ fn options_count_for_race(race: Race) -> u64 {
     // (<time> - D) * D > <distance>
     // and D can only be in the range [0, <time>]
 
-    (0..=time)
-        .into_iter()
-        .filter(|&d| (time - d) * d > distance)
-        .count() as u64
+    (0..=time).filter(|&d| (time - d) * d > distance).count() as u64
 }
 
 fn parse(input: &str) -> Race {
